@@ -1,0 +1,119 @@
+/* Create table about the people and what they do here */
+create table famous_people (id integer primary key,
+first_name text, 
+last_name text,
+career text);
+
+create table popular_movies (id integer,
+name text, celeb_firstname text, celeb_lastname text);
+
+create table popular_songs (id integer, 
+name text, celeb_firstname text, celeb_lastname text);
+
+insert into famous_people (first_name, last_name, career) values
+("Denzel", "Washington", "actor");
+insert into famous_people (first_name, last_name, career) values
+("Matthew", "McConaughey", "actor");
+insert into famous_people (first_name, last_name, career) values
+("Brad", "Pitt", "actor");
+insert into famous_people (first_name, last_name, career) values
+("Leonardo", "DiCaprio", "actor");
+insert into famous_people (first_name, last_name, career) values
+("Tom", "Hanks", "actor");
+insert into famous_people (first_name, last_name, career) values
+("Jennifer", "Lawrence", "actress");
+insert into famous_people (first_name, last_name, career) values("Angelina", "Jolie", "actress");
+insert into famous_people (first_name, last_name, career) values
+("Jessica", "Chastain", "actress");
+insert into famous_people (first_name, last_name, career) values
+("Lady", "Gaga", "singer");
+insert into famous_people (first_name, last_name, career) values
+("Katy", "Perry", "singer");
+insert into famous_people (first_name, last_name, career) values
+("Jason", "Aldean", "singer");
+insert into famous_people (first_name, last_name, career) values
+("Keith", "Urban", "singer");
+insert into famous_people (first_name, last_name, career) values
+("Bradley", "Cooper", "actor");
+insert into famous_people (first_name, last_name, career) values
+("Bradley", "Cooper", "singer");
+
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(5, "Sully", "Tom", "Hanks");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(5, "Castaway", "Tom", "Hanks");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(1, "Training Day", "Denzel", "Washington");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(1, "Flight", "Denzel", "Washington");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(2, "Intersteller", "Matthew", "McConaughey");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(2, "Mud", "Matthew", "McConaughey");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(3, "Moneyball", "Brad", "Pitt");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(3, "Fury", "Brad", "Pitt");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(4, "Wolf of Wall Street", "Leonardo", "DiCaprio");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(4, "Inception", "Leonardo", "DiCaprio");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(6, "The Hunger Games", "Jennifer", "Lawrence");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(6, "Passengers", "Jennifer", "Lawrence");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(7, "Wanted", "Angelina", "Jolie");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(7, "Salt", "Angelina", "Jolie");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(8, "Mollys Game", "Jessica", "Chastain");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(8, "AVA", "Jessica", "Chastain");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(13, "The Hangover", "Bradley", "Cooper");
+insert into popular_movies (id, name, celeb_firstname, celeb_lastname) values
+(13, "A Star is Born", "Bradley", "Cooper");
+
+insert into popular_songs (id, name, celeb_firstname, celeb_lastname) values
+(9, "Poker Face", "Lady", "Gaga");
+insert into popular_songs (id, name, celeb_firstname, celeb_lastname) values
+(9, "Just Dance", "Lady", "Gaga");
+insert into popular_songs (id, name, celeb_firstname, celeb_lastname) values
+(10, "Firework", "Katy", "Perry");
+insert into popular_songs (id, name, celeb_firstname, celeb_lastname) values
+(10, "I Kissed a Girl", "Katy", "Perry");
+insert into popular_songs (id, name, celeb_firstname, celeb_lastname) values
+(11, "If I Didnt Love You", "Jason", "Aldean");
+insert into popular_songs (id, name, celeb_firstname, celeb_lastname) values
+(11, "Georgia", "Jason", "Aldean");
+insert into popular_songs (id, name, celeb_firstname, celeb_lastname) values
+(12, "The Fighter", "Keith", "Urban");
+insert into popular_songs (id, name, celeb_firstname, celeb_lastname) values
+(12, "What Was I Thinking", "Keith", "Urban");
+insert into popular_songs (id, name, celeb_firstname, celeb_lastname) values
+(14, "Shallow", "Bradley", "Cooper");
+insert into popular_songs (id, name, celeb_firstname, celeb_lastname) values
+(14, "Black Eyes", "Bradley", "Cooper");
+
+select first_name, last_name, career, name from famous_people 
+join popular_movies
+on famous_people.first_name=popular_movies.celeb_firstname;
+
+select first_name, last_name, career, name from famous_people 
+join popular_songs
+on famous_people.first_name=popular_songs.celeb_firstname;
+
+select p.first_name, p.last_name, p.career, m.name as "movie name" from famous_people as p
+join popular_movies as m
+on p.first_name=m.celeb_firstname;
+
+select p.first_name, p.last_name, p.career, s.name as "song name" from famous_people as p
+join popular_songs as s
+on p.first_name=s.celeb_firstname;
+
+select p.first_name, p.last_name, p.career, m.name as "movie name", s.name as "song name" from famous_people as p
+join popular_movies as m
+on p.id=m.id
+join popular_songs as s
+on p.id=s.id;
